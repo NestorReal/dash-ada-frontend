@@ -103,7 +103,15 @@ const Container = menu => {
 export function Home() {
   useInjectReducer({ key: 'home', reducer });
   useInjectSaga({ key: 'home', saga });
-  const [menu, setMenu] = useState(1);
+  const [menu, setMenu] = useState(0);
+  const title = [
+    'MI PERFIL',
+    'MÉTRICAS GENERALES',
+    'CRÉDITO',
+    'COMPORTAMIENTO EN LA APP',
+    'USUARIAS',
+    'CURSOS Y VÍDEOS',
+  ];
   const options = [
     { value: 0, name: 'TODAS' },
     { value: 1, name: 'opcion1' },
@@ -173,7 +181,7 @@ export function Home() {
       </MenuLateral>
       <div className="children">
         <Header
-          title="MI PERFIL"
+          title={title[menu]}
           subtitle=" - ADA Impacto"
           actions
           options={options}
