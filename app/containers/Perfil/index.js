@@ -16,10 +16,10 @@ import styled from 'styled-components';
 import makeSelectPerfil from './selectors';
 import reducer from './reducer';
 import saga from './saga';
-import GridAuto from '../../components/GridAuto';
+import GridAuto from '../../components/components/GridAuto';
 import { theme } from '../../themes';
 import basura from '../../images/basura.png';
-import Table from '../../components/Table';
+import Table from '../../components/components/Table';
 const ContainerPerfil = styled.div`
   position: absolute;
   width: 100%;

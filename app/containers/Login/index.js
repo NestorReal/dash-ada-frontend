@@ -16,7 +16,7 @@ import styled from 'styled-components';
 import makeSelectLogin from './selectors';
 import reducer from './reducer';
 import saga from './saga';
-import Formulario from '../../components/Formulario';
+import Formulario from '../../components/components/Formulario';
 import { theme } from '../../themes';
 
 const ContainerLogin = styled.div`

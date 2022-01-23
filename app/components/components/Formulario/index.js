@@ -9,7 +9,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import Input from '../Input';
 import Button from '../Button';
-import { theme } from '../../themes';
+import { theme } from '../../../themes';
 
 const ContainerFormulario = styled.div`
   position: absolute;

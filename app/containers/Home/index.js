@@ -23,8 +23,8 @@ import Comportamiento from '../Comportamiento';
 import Usuarios from '../Usuarios';
 import Cursos from '../Cursos';
 import { theme } from '../../themes';
-import MenuLateral from '../../components/MenuLateral';
-import Header from '../../components/Header';
+import MenuLateral from '../../components/components/MenuLateral';
+import Header from '../../components/components/Header';
 import casa1 from '../../images/casa.png';
 import casa2 from '../../images/casa2.png';
 import d1 from '../../images/d1.png';
@@ -103,7 +103,7 @@ const Container = menu => {
 export function Home() {
   useInjectReducer({ key: 'home', reducer });
   useInjectSaga({ key: 'home', saga });
-  const [menu, setMenu] = useState(0);
+  const [menu, setMenu] = useState(5);
   const title = [
     'MI PERFIL',
     'MÉTRICAS GENERALES',
