@@ -5,7 +5,7 @@
  */
 
 import React, { useState } from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Input from '../Input';
 import Button from '../Button';
@@ -43,14 +43,11 @@ const ContainerFormulario = styled.div`
   }
 `;
 
-function Formulario() {
+function Formulario(props) {
   const [state, setState] = useState({
     user: '',
-    pass: '',
+    password: '',
   });
-  const user = event => {
-    setState({ ...state, user: event.target.value });
-  };
   return (
     <ContainerFormulario>
       <div className="title">
@@ -64,7 +61,7 @@ function Formulario() {
       <Input
         placeholder="Usuario"
         type="text"
-        onChange={user}
+        onChange={() => setState({ ...state, user: event.target.value })}
         value={state.user}
         height="14.921%"
       />
@@ -72,8 +69,8 @@ function Formulario() {
         <Input
           placeholder="Contraseña"
           type="password"
-          onChange={user}
-          value={state.user}
+          onChange={() => setState({ ...state, password: event.target.value })}
+          value={state.password}
           height="100%"
         />
       </div>
@@ -81,7 +78,7 @@ function Formulario() {
         height="14.921%"
         width="100%"
         text="¡ENTRAR!"
-        onClick={() => {}}
+        onClick={() => props.submit(state)}
       />
       <div className="link">
         <h6 style={{ fontWeight: 'normal' }}>
@@ -92,6 +89,8 @@ function Formulario() {
   );
 }
 
-Formulario.propTypes = {};
+Formulario.propTypes = {
+  submit: PropTypes.func,
+};
 
 export default Formulario;

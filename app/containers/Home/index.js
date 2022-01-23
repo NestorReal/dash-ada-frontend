@@ -4,11 +4,12 @@
  *
  */
 
-import React, { useState } from 'react';
-// import PropTypes from 'prop-types';
+import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
+import auth from 'utils/auth';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
@@ -37,7 +38,7 @@ import v1 from '../../images/v1.png';
 import v2 from '../../images/v2.png';
 import power from '../../images/apagar.png';
 import logo from '../../images/Logo.png';
-
+import { getInfoHome } from './actions';
 const Main = styled.div`
   position: absolute;
   height: auto;
@@ -99,8 +100,7 @@ const Container = menu => {
       return <Perfil />;
   }
 };
-
-export function Home() {
+export function Home(props) {
   useInjectReducer({ key: 'home', reducer });
   useInjectSaga({ key: 'home', saga });
   const [menu, setMenu] = useState(1);
@@ -116,7 +116,9 @@ export function Home() {
     { value: 2, name: 'opcion2' },
     { value: 3, name: 'opcion3' },
   ];
-
+  useEffect(() => {
+    props.dispatch(getInfoHome('2021-09-27', '2022-01-13'));
+  }, []);
   return (
     <Main>
       <MenuLateral>
@@ -166,7 +168,7 @@ export function Home() {
           <img src={menu === 5 ? v2 : v1} style={{ height: '43%' }} alt="v1" />
         </button>
         <div className="center ContainerPower">
-          <button type="button" className="power" onClick={() => {}}>
+          <button type="button" className="power" onClick={() => auth.logout()}>
             <img src={power} alt="apagar" />
           </button>
         </div>
@@ -188,7 +190,7 @@ export function Home() {
 }
 
 Home.propTypes = {
-  // dispatch: PropTypes.func.isRequired,
+  dispatch: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
