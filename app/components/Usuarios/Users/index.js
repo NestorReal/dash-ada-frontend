@@ -5,7 +5,7 @@
  */
 
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import GridAuto from '../../components/GridAuto';
 import Table from '../../components/Table';
@@ -20,73 +20,36 @@ const ContainerUsuario = styled.div`
   color: #ea285d;
 `;
 
-const data = [
-  {
-    name: 'Nombre',
-    phone: 'Teléfono',
-    id: 'ID',
-    financial: 'Financiera',
-    state: 'Estado',
-    user: 'Usuaria App',
-  },
-  {
-    name: 'Nombre',
-    phone: 'Teléfono',
-    id: 'ID',
-    financial: 'Financiera',
-    state: 'Estado',
-    user: 'Usuaria App',
-  },
-  {
-    name: 'Nombre',
-    phone: 'Teléfono',
-    id: 'ID',
-    financial: 'Financiera',
-    state: 'Estado',
-    user: 'Usuaria App',
-  },
-  {
-    name: 'Nombre',
-    phone: 'Teléfono',
-    id: 'ID',
-    financial: 'Financiera',
-    state: 'Estado',
-    user: 'Usuaria App',
-  },
-  {
-    name: 'Nombre',
-    phone: 'Teléfono',
-    id: 'ID',
-    financial: 'Financiera',
-    state: 'Estado',
-    user: 'Usuaria App',
-  },
-];
-
-function Users() {
+function Users(props) {
+  let dataJson = [];
+  if (Object.keys(props.data).length !== 0) {
+    dataJson = props.data.data;
+  }
   return (
     <ContainerUsuario>
-      {data.map(item => (
+      {dataJson.map(item => (
         <Table>
           <GridAuto width="93.38%">
             <div>
               <div style={{ left: '3%' }} className="circle" />
-              <p>{item.name}</p>
+              <p>
+                {item.firstName} {item.lastName}
+              </p>
             </div>
             <div>
-              <p>{item.phone}</p>
+              <p>{item.phoneNumber}</p>
             </div>
             <div>
-              <p>{item.id}</p>
+              <p>{item['_id']}</p>
             </div>
             <div>
-              <p>{item.financial}</p>
+              <p>{item.company_id.name}</p>
             </div>
             <div>
-              <p>{item.state}</p>
+              <p>{item.community !== undefined ? item.community : '-'}</p>
             </div>
             <div>
-              <p>{item.user}</p>
+              <p>Usuaria app</p>
             </div>
           </GridAuto>
           <button type="button">
@@ -98,6 +61,8 @@ function Users() {
   );
 }
 
-Users.propTypes = {};
+Users.propTypes = {
+  data: PropTypes.object,
+};
 
 export default Users;

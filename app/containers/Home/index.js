@@ -4,11 +4,12 @@
  *
  */
 
-import React, { useState } from 'react';
-// import PropTypes from 'prop-types';
+import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
+import auth from 'utils/auth';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
@@ -37,7 +38,18 @@ import v1 from '../../images/v1.png';
 import v2 from '../../images/v2.png';
 import power from '../../images/apagar.png';
 import logo from '../../images/Logo.png';
-
+import {
+  getInfoHome,
+  getClientsAll,
+  getMentors,
+  getUsers,
+  getNotifications,
+  getVideos,
+  getInfoHomeMicrowd,
+  getInfoHomeProgresemos,
+  getClientsMicrowd,
+  getClientsProgresemos,
+} from './actions';
 const Main = styled.div`
   position: absolute;
   height: auto;
@@ -80,30 +92,30 @@ const Main = styled.div`
     top: 9.426%;
   }
 `;
-
-const Container = menu => {
-  switch (menu.menu) {
-    case 0:
-      return <Perfil />;
-    case 1:
-      return <Metricas />;
-    case 2:
-      return <Credito />;
-    case 3:
-      return <Comportamiento />;
-    case 4:
-      return <Usuarios />;
-    case 5:
-      return <Cursos />;
-    default:
-      return <Perfil />;
-  }
-};
-
-export function Home() {
+export function Home(props) {
   useInjectReducer({ key: 'home', reducer });
   useInjectSaga({ key: 'home', saga });
-  const [menu, setMenu] = useState(5);
+  const [menu, setMenu] = useState(1);
+
+  const Container = menuNum => {
+    switch (menuNum.menu) {
+      case 0:
+        return <Perfil data={props.home.users} />;
+      case 1:
+        return <Metricas data={props.home.metricsHome} />;
+      case 2:
+        return <Credito />;
+      case 3:
+        return <Comportamiento />;
+      case 4:
+        return <Usuarios data={props.home.clientsAll} />;
+      case 5:
+        return <Cursos data={props.home.videos} />;
+      default:
+        return <Perfil />;
+    }
+  };
+
   const title = [
     'MI PERFIL',
     'MÉTRICAS GENERALES',
@@ -114,9 +126,8 @@ export function Home() {
   ];
   const options = [
     { value: 0, name: 'TODAS' },
-    { value: 1, name: 'opcion1' },
-    { value: 2, name: 'opcion2' },
-    { value: 3, name: 'opcion3' },
+    { value: 1, name: 'MICROWD' },
+    { value: 2, name: 'PROGRESEMOS' },
   ];
   const date = [
     { value: 0, name: '2021 18 OCT - 20 OCT' },
@@ -124,7 +135,28 @@ export function Home() {
     { value: 2, name: 'opcion2' },
     { value: 3, name: 'opcion3' },
   ];
+  useEffect(() => {
+    props.dispatch(getInfoHome('2021-09-27', '2022-01-13'));
+    props.dispatch(getClientsAll());
+    props.dispatch(getMentors());
+    props.dispatch(getUsers());
+    props.dispatch(getNotifications());
+    props.dispatch(getVideos());
+  }, []);
+  console.log(props.home.users)
 
+  const selectOption = option => {
+    if (option === 'TODAS') {
+      props.dispatch(getInfoHome('2021-09-27', '2022-01-13'));
+      props.dispatch(getClientsAll());
+    } else if (option === 'MICROWD') {
+      props.dispatch(getInfoHomeMicrowd('2021-09-27', '2022-01-13'));
+      props.dispatch(getClientsMicrowd());
+    } else if (option === 'PROGRESEMOS') {
+      props.dispatch(getInfoHomeProgresemos('2021-09-27', '2022-01-13'));
+      props.dispatch(getClientsProgresemos());
+    }
+  };
   return (
     <Main>
       <MenuLateral>
@@ -174,7 +206,7 @@ export function Home() {
           <img src={menu === 5 ? v2 : v1} style={{ height: '43%' }} alt="v1" />
         </button>
         <div className="center ContainerPower">
-          <button type="button" className="power" onClick={() => {}}>
+          <button type="button" className="power" onClick={() => auth.logout()}>
             <img src={power} alt="apagar" />
           </button>
         </div>
@@ -186,6 +218,7 @@ export function Home() {
           actions
           options={options}
           date={date}
+          selectOption={option => selectOption(option)}
         />
         <div className="container">
           <Container menu={menu} />
@@ -196,7 +229,8 @@ export function Home() {
 }
 
 Home.propTypes = {
-  // dispatch: PropTypes.func.isRequired,
+  dispatch: PropTypes.func.isRequired,
+  home: PropTypes.object,
 };
 
 const mapStateToProps = createStructuredSelector({

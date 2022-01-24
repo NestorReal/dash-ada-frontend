@@ -5,7 +5,7 @@
  */
 
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
@@ -89,7 +89,7 @@ const ContainerPerfil = styled.div`
   }
 `;
 
-export function Perfil() {
+export function Perfil(props) {
   useInjectReducer({ key: 'perfil', reducer });
   useInjectSaga({ key: 'perfil', saga });
   const data = [
@@ -119,6 +119,10 @@ export function Perfil() {
       pass: 'Cambiar contraseña',
     },
   ];
+  let dataJson = [];
+  if (Object.keys(props.data).length !== 0) {
+    dataJson = props.data.data;
+  }
   return (
     <ContainerPerfil>
       <div className="containerText">
@@ -129,18 +133,20 @@ export function Perfil() {
         <h2>+</h2>
       </div>
       <div className="divContenedor">
-        {data.map(item => (
+        {dataJson.map(item => (
           <Table>
             <GridAuto width="93.38%">
               <div>
                 <div className="circle" />
-                <p>{item.emai}</p>
+                <p>{item.email}</p>
               </div>
               <div>
-                <p>{item.permisos}</p>
+                {/* <p>{item.permisos}</p> */}
+                <p>Todos los permisos</p>
               </div>
               <div>
-                <p>{item.pass}</p>
+                {/* <p>{item.pass}</p> */}
+                <p>Cambiar contraseña</p>
               </div>
             </GridAuto>
             <button type="button">
@@ -155,6 +161,7 @@ export function Perfil() {
 
 Perfil.propTypes = {
   // dispatch: PropTypes.func.isRequired,
+  data: PropTypes.object,
 };
 
 const mapStateToProps = createStructuredSelector({

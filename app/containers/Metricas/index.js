@@ -5,7 +5,7 @@
  */
 
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
@@ -17,19 +17,19 @@ import reducer from './reducer';
 import saga from './saga';
 import MetricasGenerales from '../../components/MetricasGenerales/MetricasGenerales';
 
-export function Metricas() {
+export function Metricas(props) {
   useInjectReducer({ key: 'metricas', reducer });
   useInjectSaga({ key: 'metricas', saga });
-
   return (
     <div>
-      <MetricasGenerales />
+      <MetricasGenerales data={props.data} />
     </div>
   );
 }
 
 Metricas.propTypes = {
   // dispatch: PropTypes.func.isRequired,
+  data: PropTypes.object,
 };
 
 const mapStateToProps = createStructuredSelector({

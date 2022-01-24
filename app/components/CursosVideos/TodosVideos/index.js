@@ -5,7 +5,7 @@
  */
 
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { theme } from '../../../themes';
 import GridAuto from '../../components/GridAuto';
@@ -78,30 +78,35 @@ const data = [
   },
 ];
 
-function TodosVideos() {
+function TodosVideos(props) {
+  let dataJson = [];
+  if (Object.keys(props.data).length !== 0) {
+    dataJson = props.data.data;
+  }
   return (
     <ContainerTodos>
       <div className="add">
         <h2>CURSOS Y VÍDEOS - TODOS LOS VÍDEOS</h2>
-        <button type="button">
+        {/* <button type="button">
           <h2>+</h2>
-        </button>
+        </button> */}
       </div>
 
-      {data.map(item => (
+      {dataJson.map(item => (
         <Table>
           <GridAuto width="85%">
             <div>
-              <div className="star">
-                <p>{item.name}</p>
-                <img src={item.star ? star1 : star2} alt="star" />
+              <div>
+                <p>{item.title}</p>
+                {/* <img src={item.star ? star1 : star2} alt="star" /> */}
               </div>
             </div>
             <div>
-              <p>{item.curso}</p>
+              {/* <p>{item.curso}</p> */}
+              <p>Curso 01</p>
             </div>
             <div>
-              <p>{item.visible}</p>
+              <p>{item.visible ? 'visible' : 'no visible'}</p>
             </div>
           </GridAuto>
           <button type="button">
@@ -119,6 +124,8 @@ function TodosVideos() {
   );
 }
 
-TodosVideos.propTypes = {};
+TodosVideos.propTypes = {
+  data: PropTypes.object,
+};
 
 export default TodosVideos;

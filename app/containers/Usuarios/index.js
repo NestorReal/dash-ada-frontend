@@ -5,7 +5,7 @@
  */
 
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
@@ -16,19 +16,20 @@ import reducer from './reducer';
 import saga from './saga';
 import User from '../../components/Usuarios/Users';
 
-export function Usuarios() {
+export function Usuarios(props) {
   useInjectReducer({ key: 'usuarios', reducer });
   useInjectSaga({ key: 'usuarios', saga });
 
   return (
     <div>
-      <User />
+      <User data={props.data} />
     </div>
   );
 }
 
 Usuarios.propTypes = {
   // dispatch: PropTypes.func.isRequired,
+  data: PropTypes.object,
 };
 
 const mapStateToProps = createStructuredSelector({

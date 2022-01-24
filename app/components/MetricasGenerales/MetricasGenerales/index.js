@@ -5,10 +5,11 @@
  */
 
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import GridLayout from '../../components/GridLayout';
 import Rectangulo from '../../components/Rectangulo';
+const humanFormat = require('human-format');
 
 const ContainerMetrica = styled.div`
   position: absolute;
@@ -18,18 +19,28 @@ const ContainerMetrica = styled.div`
   padding: 2.24% 2.38% 2.24%;
 `;
 
-function MetricasGenerales() {
-  const data = [
-    { name: 'Nº DE CLIENTES', value: '2.000' },
-    { name: 'PRÉSTAMOS OTORGADOS', value: '1.450' },
-    { name: 'CAPITAL ACTIVO', value: '45.000' },
-    { name: 'MONTO PRÉSTAMO PROMEDIO', value: '2.000' },
-    { name: 'TASA DE RETENCIÓN', value: '75%' },
-    { name: 'PORTFOLIO EN RIESGO', value: '20%' },
-  ];
+function MetricasGenerales(props) {
+  let dataJson = [];
+  if (Object.keys(props.data).length !== 0) {
+    const { data } = props.data;
+    dataJson = [
+      { name: 'Nº DE CLIENTES', value: humanFormat(data.totalClients) },
+      {
+        name: 'PRÉSTAMOS OTORGADOS',
+        value: humanFormat(data.totalLoansGranted),
+      },
+      { name: 'CAPITAL ACTIVO', value: humanFormat(data.capitalActive) },
+      {
+        name: 'MONTO PRÉSTAMO PROMEDIO',
+        value: humanFormat(data.averageLoanAmount),
+      },
+      { name: 'TASA DE RETENCIÓN', value: `${data.rateRetention}%` },
+      { name: 'PORTFOLIO EN RIESGO', value: `${data.portfolioRisk}%` },
+    ];
+  }
   return (
     <ContainerMetrica>
-      <Rectangulo data={data} />
+      <Rectangulo data={dataJson} />
       <GridLayout>
         <div className="item2">
           <div className="header">
@@ -81,6 +92,8 @@ function MetricasGenerales() {
   );
 }
 
-MetricasGenerales.propTypes = {};
+MetricasGenerales.propTypes = {
+  data: PropTypes.object,
+};
 
 export default MetricasGenerales;
