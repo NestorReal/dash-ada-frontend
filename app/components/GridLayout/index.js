@@ -60,6 +60,8 @@ const GridLayoutContainer = styled.div`
       display: flex;
       align-items: center;
       justify-content: space-between;
+      color: ${theme.colors.primary};
+      font-weight: bold;
       .circles {
         width: 60px;
         display: flex;

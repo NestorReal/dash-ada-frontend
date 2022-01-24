@@ -38,7 +38,14 @@ import v1 from '../../images/v1.png';
 import v2 from '../../images/v2.png';
 import power from '../../images/apagar.png';
 import logo from '../../images/Logo.png';
-import { getInfoHome } from './actions';
+import {
+  getInfoHome,
+  getClientsAll,
+  getMentors,
+  getUsers,
+  getNotifications,
+  getVideos,
+} from './actions';
 const Main = styled.div`
   position: absolute;
   height: auto;
@@ -103,7 +110,15 @@ const Container = menu => {
 export function Home(props) {
   useInjectReducer({ key: 'home', reducer });
   useInjectSaga({ key: 'home', saga });
-  const [menu, setMenu] = useState(1);
+  const [menu, setMenu] = useState(0);
+  const title = [
+    'MI PERFIL',
+    'MÉTRICAS GENERALES',
+    'CRÉDITO',
+    'COMPORTAMIENTO EN LA APP',
+    'USUARIAS',
+    'CURSOS Y VÍDEOS',
+  ];
   const options = [
     { value: 0, name: 'TODAS' },
     { value: 1, name: 'opcion1' },
@@ -118,6 +133,11 @@ export function Home(props) {
   ];
   useEffect(() => {
     props.dispatch(getInfoHome('2021-09-27', '2022-01-13'));
+    props.dispatch(getClientsAll());
+    props.dispatch(getMentors());
+    props.dispatch(getUsers());
+    props.dispatch(getNotifications());
+    props.dispatch(getVideos());
   }, []);
   return (
     <Main>
@@ -175,7 +195,7 @@ export function Home(props) {
       </MenuLateral>
       <div className="children">
         <Header
-          title="MI PERFIL"
+          title={title[menu]}
           subtitle=" - ADA Impacto"
           actions
           options={options}

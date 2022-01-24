@@ -44,7 +44,7 @@ export function Metricas() {
       <GridLayout>
         <div className="item2">
           <div className="header">
-            mapa
+            <p>mapa</p>
             <div className="circles">
               <div />
               <div />
@@ -53,7 +53,7 @@ export function Metricas() {
         </div>
         <div className="item3">
           <div className="header">
-            monto desembolsado
+            <p>monto desembolsado</p>
             <div className="circles">
               <div />
               <div />
@@ -62,7 +62,7 @@ export function Metricas() {
         </div>
         <div className="item6">
           <div className="header">
-            nuevos clientes
+            <p>nuevos clientes</p>
             <div className="circles">
               <div />
               <div />
@@ -71,7 +71,7 @@ export function Metricas() {
         </div>
         <div className="item7">
           <div className="header">
-            APP/BOT ENGAGEMMENT
+            <p>APP/BOT ENGAGEMMENT</p>
             <div className="circles">
               <div />
               <div />
@@ -80,7 +80,7 @@ export function Metricas() {
         </div>
         <div className="item8">
           <div className="header">
-            PERFORMANCE FINANCIERAS
+            <p>PERFORMANCE FINANCIERAS</p>
             <div className="circles">
               <div />
               <div />
