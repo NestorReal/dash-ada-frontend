@@ -300,7 +300,7 @@ export function* getClientsProgresemosByDateSaga(actions) {
 
 export function* getInfoHomeProgresemosSaga(actions) {
   try {
-    const requestURL = `http://ec2-18-217-168-29.us-east-2.compute.amazonaws.com/adaimpacto/api/v1/dashboard/clients/microwd/home`;
+    const requestURL = `http://ec2-18-217-168-29.us-east-2.compute.amazonaws.com/adaimpacto/api/v1/dashboard/clients/progresemos/home`;
     const response = yield call(request, requestURL, {
       method: 'GET',
       headers: {

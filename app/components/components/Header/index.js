@@ -7,8 +7,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { theme } from '../../themes';
-import search from '../../images/bus.png';
+import { theme } from '../../../themes';
+import search from '../../../images/bus.png';
 
 const ContainerHeader = styled.div`
   position: absolute;
@@ -82,7 +82,7 @@ const ContainerHeader = styled.div`
   }
 `;
 
-function Header({ title, subtitle, actions, options, date }) {
+function Header({ title, subtitle, actions, options, date, selectOption }) {
   return (
     <ContainerHeader>
       <h6 className="title">
@@ -96,7 +96,7 @@ function Header({ title, subtitle, actions, options, date }) {
             <input placeholder="Busca por prestataria, financiera…" />
           </div>
           <div className="select">
-            <select>
+            <select onChange={e => selectOption(e.target.value)}>
               {options.map((item, index) => (
                 <option selected={index === 0} key={item.value}>
                   {item.name}
@@ -125,6 +125,7 @@ Header.propTypes = {
   actions: PropTypes.bool,
   options: PropTypes.array,
   date: PropTypes.array,
+  selectOption: PropTypes.func,
 };
 
 export default Header;

@@ -24,8 +24,8 @@ import Comportamiento from '../Comportamiento';
 import Usuarios from '../Usuarios';
 import Cursos from '../Cursos';
 import { theme } from '../../themes';
-import MenuLateral from '../../components/MenuLateral';
-import Header from '../../components/Header';
+import MenuLateral from '../../components/components/MenuLateral';
+import Header from '../../components/components/Header';
 import casa1 from '../../images/casa.png';
 import casa2 from '../../images/casa2.png';
 import d1 from '../../images/d1.png';
@@ -45,6 +45,10 @@ import {
   getUsers,
   getNotifications,
   getVideos,
+  getInfoHomeMicrowd,
+  getInfoHomeProgresemos,
+  getClientsMicrowd,
+  getClientsProgresemos,
 } from './actions';
 const Main = styled.div`
   position: absolute;
@@ -88,29 +92,30 @@ const Main = styled.div`
     top: 9.426%;
   }
 `;
-
-const Container = menu => {
-  switch (menu.menu) {
-    case 0:
-      return <Perfil />;
-    case 1:
-      return <Metricas />;
-    case 2:
-      return <Credito />;
-    case 3:
-      return <Comportamiento />;
-    case 4:
-      return <Usuarios />;
-    case 5:
-      return <Cursos />;
-    default:
-      return <Perfil />;
-  }
-};
 export function Home(props) {
   useInjectReducer({ key: 'home', reducer });
   useInjectSaga({ key: 'home', saga });
-  const [menu, setMenu] = useState(0);
+  const [menu, setMenu] = useState(1);
+
+  const Container = menuNum => {
+    switch (menuNum.menu) {
+      case 0:
+        return <Perfil data={props.home.users} />;
+      case 1:
+        return <Metricas data={props.home.metricsHome} />;
+      case 2:
+        return <Credito />;
+      case 3:
+        return <Comportamiento />;
+      case 4:
+        return <Usuarios data={props.home.clientsAll} />;
+      case 5:
+        return <Cursos data={props.home.videos} />;
+      default:
+        return <Perfil />;
+    }
+  };
+
   const title = [
     'MI PERFIL',
     'MÉTRICAS GENERALES',
@@ -121,9 +126,8 @@ export function Home(props) {
   ];
   const options = [
     { value: 0, name: 'TODAS' },
-    { value: 1, name: 'opcion1' },
-    { value: 2, name: 'opcion2' },
-    { value: 3, name: 'opcion3' },
+    { value: 1, name: 'MICROWD' },
+    { value: 2, name: 'PROGRESEMOS' },
   ];
   const date = [
     { value: 0, name: '2021 18 OCT - 20 OCT' },
@@ -139,6 +143,20 @@ export function Home(props) {
     props.dispatch(getNotifications());
     props.dispatch(getVideos());
   }, []);
+  console.log(props.home.users)
+
+  const selectOption = option => {
+    if (option === 'TODAS') {
+      props.dispatch(getInfoHome('2021-09-27', '2022-01-13'));
+      props.dispatch(getClientsAll());
+    } else if (option === 'MICROWD') {
+      props.dispatch(getInfoHomeMicrowd('2021-09-27', '2022-01-13'));
+      props.dispatch(getClientsMicrowd());
+    } else if (option === 'PROGRESEMOS') {
+      props.dispatch(getInfoHomeProgresemos('2021-09-27', '2022-01-13'));
+      props.dispatch(getClientsProgresemos());
+    }
+  };
   return (
     <Main>
       <MenuLateral>
@@ -200,6 +218,7 @@ export function Home(props) {
           actions
           options={options}
           date={date}
+          selectOption={option => selectOption(option)}
         />
         <div className="container">
           <Container menu={menu} />
@@ -211,6 +230,7 @@ export function Home(props) {
 
 Home.propTypes = {
   dispatch: PropTypes.func.isRequired,
+  home: PropTypes.object,
 };
 
 const mapStateToProps = createStructuredSelector({
