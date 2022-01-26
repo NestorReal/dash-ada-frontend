@@ -12,15 +12,16 @@ import GridAuto from '../../components/GridAuto';
 import Table from '../../components/Table';
 import ojo2 from '../../../images/ojo2.png';
 import lapiz2 from '../../../images/lapiz2.png';
-import star1 from '../../../images/star1.png';
-import star2 from '../../../images/star2.png';
+// import star1 from '../../../images/star1.png';
+// import star2 from '../../../images/star2.png';
 import basura from '../../../images/basura.png';
 
 const ContainerTodos = styled.div`
   padding: 3.487%;
   position: absolute;
   width: 100%;
-  min-height: 100%;
+  height: 100%;
+  overflow: auto;
   h2 {
     color: ${theme.colors.primary};
   }
@@ -36,6 +37,16 @@ const ContainerTodos = styled.div`
     img {
       height: 50%;
     }
+  }
+  .optionOne {
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: transparent;
+    margin-left: 5%;
   }
   .add {
     display: flex;
@@ -57,27 +68,6 @@ const ContainerTodos = styled.div`
   }
 `;
 
-const data = [
-  {
-    name: 'nombre',
-    star: false,
-    curso: 'curso',
-    visible: 'visible',
-  },
-  {
-    name: 'nombre',
-    star: true,
-    curso: 'curso',
-    visible: 'visible',
-  },
-  {
-    name: 'nombre',
-    star: false,
-    curso: 'curso',
-    visible: 'visible',
-  },
-];
-
 function TodosVideos(props) {
   let dataJson = [];
   if (Object.keys(props.data).length !== 0) {
@@ -94,9 +84,9 @@ function TodosVideos(props) {
 
       {dataJson.map(item => (
         <Table>
-          <GridAuto width="85%">
+          <GridAuto width="80%">
             <div>
-              <div>
+              <div className="optionOne">
                 <p>{item.title}</p>
                 {/* <img src={item.star ? star1 : star2} alt="star" /> */}
               </div>
