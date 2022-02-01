@@ -92,33 +92,6 @@ const ContainerPerfil = styled.div`
 export function Perfil(props) {
   useInjectReducer({ key: 'perfil', reducer });
   useInjectSaga({ key: 'perfil', saga });
-  const data = [
-    {
-      emai: 'Joaquin@adaimpacto.com',
-      permisos: 'Todos los permisos',
-      pass: 'Cambiar contraseña',
-    },
-    {
-      emai: 'Joaquin@adaimpacto.com',
-      permisos: 'Todos los permisos',
-      pass: 'Cambiar contraseña',
-    },
-    {
-      emai: 'Joaquin@adaimpacto.com',
-      permisos: 'Todos los permisos',
-      pass: 'Cambiar contraseña',
-    },
-    {
-      emai: 'Joaquin@adaimpacto.com',
-      permisos: 'Todos los permisos',
-      pass: 'Cambiar contraseña',
-    },
-    {
-      emai: 'Joaquin@adaimpacto.com',
-      permisos: 'Todos los permisos',
-      pass: 'Cambiar contraseña',
-    },
-  ];
   let dataJson = [];
   if (Object.keys(props.data).length !== 0) {
     dataJson = props.data.data;

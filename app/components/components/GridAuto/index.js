@@ -12,7 +12,10 @@ import { theme } from '../../../themes';
 const Grid = styled.div`
   width: ${props => props.width};
   display: grid;
-  grid-template-columns: ${props => props.auto.map(() => 'auto ')};
+  grid-template-columns: ${props => {
+    const width = 100 / props.auto.length;
+    return props.auto.map(() => `${width}% `);
+  }};
   grid-gap: 10px;
   .circle {
     position: absolute;
