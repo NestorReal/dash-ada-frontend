@@ -9,6 +9,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import GridLayout from '../../components/GridLayout';
 import Rectangulo from '../../components/Rectangulo';
+// eslint-disable-next-line import/no-unresolved
 const humanFormat = require('human-format');
 
 const ContainerMetrica = styled.div`

@@ -61,7 +61,7 @@ function Formulario(props) {
       <Input
         placeholder="Usuario"
         type="text"
-        onChange={() => setState({ ...state, user: event.target.value })}
+        onChange={event => setState({ ...state, user: event.target.value })}
         value={state.user}
         height="14.921%"
       />
@@ -69,7 +69,9 @@ function Formulario(props) {
         <Input
           placeholder="Contraseña"
           type="password"
-          onChange={() => setState({ ...state, password: event.target.value })}
+          onChange={event =>
+            setState({ ...state, password: event.target.value })
+          }
           value={state.password}
           height="100%"
         />

@@ -29,11 +29,13 @@ function Users(props) {
     <ContainerUsuario>
       {dataJson.map(item => (
         <Table>
-          <GridAuto width="93.38%">
-            <div>
+          <GridAuto width="91.5%">
+            <div title={`${item.firstName} ${item.lastName}`}>
               <div style={{ left: '3%' }} className="circle" />
               <p>
-                {item.firstName} {item.lastName}
+                {item.firstName.length < 10
+                  ? item.firstName
+                  : item.firstName.substring(0, 10)}
               </p>
             </div>
             <div>
