@@ -143,7 +143,6 @@ export function Home(props) {
     props.dispatch(getNotifications());
     props.dispatch(getVideos());
   }, []);
-  console.log(props.home.users)
 
   const selectOption = option => {
     if (option === 'TODAS') {
