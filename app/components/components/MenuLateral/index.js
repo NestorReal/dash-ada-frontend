@@ -29,6 +29,7 @@ const Menu = styled.div`
     left: 13.595%;
     border: none;
     border-radius: 56px 0 0 56px;
+    cursor: pointer;
     img {
       height: 61.333%;
     }

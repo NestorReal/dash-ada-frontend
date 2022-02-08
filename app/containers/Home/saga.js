@@ -46,7 +46,7 @@ export default function* defaultSaga() {
 
 export function* getClientsAllSaga() {
   try {
-    const requestURL = `http://ec2-18-217-168-29.us-east-2.compute.amazonaws.com/adaimpacto/api/v1/dashboard/clients/all`;
+    const requestURL = `https://api-gateway.ada-impacto.com/dashboard/clients/all`;
     const response = yield call(request, requestURL, {
       method: 'GET',
       headers: {
@@ -70,7 +70,7 @@ export function* getClientsAllSaga() {
 
 export function* getClientsAllByDateSaga(actions) {
   try {
-    const requestURL = `http://ec2-18-217-168-29.us-east-2.compute.amazonaws.com/adaimpacto/api/v1/dashboard/clients/all/date`;
+    const requestURL = `https://api-gateway.ada-impacto.com/dashboard/clients/all/date`;
     const response = yield call(request, requestURL, {
       method: 'GET',
       headers: {
@@ -96,7 +96,7 @@ export function* getClientsAllByDateSaga(actions) {
 
 export function* getHomeInfoSaga(actions) {
   try {
-    const requestURL = `http://ec2-18-217-168-29.us-east-2.compute.amazonaws.com/adaimpacto/api/v1/dashboard/clients/all/home`;
+    const requestURL = `https://api-gateway.ada-impacto.com/dashboard/clients/all/home`;
     const response = yield call(request, requestURL, {
       method: 'GET',
       headers: {
@@ -122,7 +122,7 @@ export function* getHomeInfoSaga(actions) {
 
 export function* getClientsMicrowdSaga() {
   try {
-    const requestURL = `http://ec2-18-217-168-29.us-east-2.compute.amazonaws.com/adaimpacto/api/v1/dashboard/clients/microwd`;
+    const requestURL = `https://api-gateway.ada-impacto.com/dashboard/clients/microwd`;
     const response = yield call(request, requestURL, {
       method: 'GET',
       headers: {
@@ -146,7 +146,7 @@ export function* getClientsMicrowdSaga() {
 
 export function* getClientsMicrowdIdSaga(action) {
   try {
-    const requestURL = `http://ec2-18-217-168-29.us-east-2.compute.amazonaws.com/adaimpacto/api/v1/dashboard/clients/microwd/${
+    const requestURL = `https://api-gateway.ada-impacto.com/dashboard/clients/microwd/${
       action.id
     }`;
     const response = yield call(request, requestURL, {
@@ -172,7 +172,7 @@ export function* getClientsMicrowdIdSaga(action) {
 
 export function* getClientsMicrowdByDateSaga(actions) {
   try {
-    const requestURL = `http://ec2-18-217-168-29.us-east-2.compute.amazonaws.com/adaimpacto/api/v1/dashboard/clients/microwd/date`;
+    const requestURL = `https://api-gateway.ada-impacto.com/dashboard/clients/microwd/date`;
     const response = yield call(request, requestURL, {
       method: 'GET',
       headers: {
@@ -198,7 +198,7 @@ export function* getClientsMicrowdByDateSaga(actions) {
 
 export function* getInfoHomeMicrowdSaga(actions) {
   try {
-    const requestURL = `http://ec2-18-217-168-29.us-east-2.compute.amazonaws.com/adaimpacto/api/v1/dashboard/clients/microwd/home`;
+    const requestURL = `https://api-gateway.ada-impacto.com/dashboard/clients/microwd/home`;
     const response = yield call(request, requestURL, {
       method: 'GET',
       headers: {
@@ -224,7 +224,7 @@ export function* getInfoHomeMicrowdSaga(actions) {
 
 export function* getClientsProgresemosSaga() {
   try {
-    const requestURL = `http://ec2-18-217-168-29.us-east-2.compute.amazonaws.com/adaimpacto/api/v1/dashboard/clients/progresemos`;
+    const requestURL = `https://api-gateway.ada-impacto.com/dashboard/clients/progresemos`;
     const response = yield call(request, requestURL, {
       method: 'GET',
       headers: {
@@ -248,7 +248,7 @@ export function* getClientsProgresemosSaga() {
 
 export function* getClientsProgresemosIdSaga(action) {
   try {
-    const requestURL = `http://ec2-18-217-168-29.us-east-2.compute.amazonaws.com/adaimpacto/api/v1/dashboard/clients/progresemos/${
+    const requestURL = `https://api-gateway.ada-impacto.com/dashboard/clients/progresemos/${
       action.id
     }`;
     const response = yield call(request, requestURL, {
@@ -274,7 +274,7 @@ export function* getClientsProgresemosIdSaga(action) {
 
 export function* getClientsProgresemosByDateSaga(actions) {
   try {
-    const requestURL = `http://ec2-18-217-168-29.us-east-2.compute.amazonaws.com/adaimpacto/api/v1/dashboard/clients/progresemos/date`;
+    const requestURL = `https://api-gateway.ada-impacto.com/dashboard/clients/progresemos/date`;
     const response = yield call(request, requestURL, {
       method: 'GET',
       headers: {
@@ -300,7 +300,7 @@ export function* getClientsProgresemosByDateSaga(actions) {
 
 export function* getInfoHomeProgresemosSaga(actions) {
   try {
-    const requestURL = `http://ec2-18-217-168-29.us-east-2.compute.amazonaws.com/adaimpacto/api/v1/dashboard/clients/progresemos/home`;
+    const requestURL = `https://api-gateway.ada-impacto.com/dashboard/clients/progresemos/home`;
     const response = yield call(request, requestURL, {
       method: 'GET',
       headers: {
@@ -326,7 +326,7 @@ export function* getInfoHomeProgresemosSaga(actions) {
 
 export function* getMentorsSaga() {
   try {
-    const requestURL = `http://ec2-18-217-168-29.us-east-2.compute.amazonaws.com/adaimpacto/api/v1/dashboard/user/mentors`;
+    const requestURL = `https://api-gateway.ada-impacto.com/dashboard/user/mentors`;
     const response = yield call(request, requestURL, {
       method: 'GET',
       headers: {
@@ -350,7 +350,7 @@ export function* getMentorsSaga() {
 
 export function* getUsersSaga() {
   try {
-    const requestURL = `http://ec2-18-217-168-29.us-east-2.compute.amazonaws.com/adaimpacto/api/v1/dashboard/user`;
+    const requestURL = `https://api-gateway.ada-impacto.com/dashboard/user`;
     const response = yield call(request, requestURL, {
       method: 'GET',
       headers: {
@@ -374,7 +374,7 @@ export function* getUsersSaga() {
 
 export function* getNotificationsSaga() {
   try {
-    const requestURL = `http://ec2-18-217-168-29.us-east-2.compute.amazonaws.com/adaimpacto/api/v1/dashboard/notification`;
+    const requestURL = `https://api-gateway.ada-impacto.com/dashboard/notification`;
     const response = yield call(request, requestURL, {
       method: 'GET',
       headers: {
@@ -398,7 +398,7 @@ export function* getNotificationsSaga() {
 
 export function* getVideosSaga() {
   try {
-    const requestURL = `http://ec2-18-217-168-29.us-east-2.compute.amazonaws.com/adaimpacto/api/v1/dashboard/videos`;
+    const requestURL = `https://api-gateway.ada-impacto.com/dashboard/videos`;
     const response = yield call(request, requestURL, {
       method: 'GET',
       headers: {
@@ -422,7 +422,7 @@ export function* getVideosSaga() {
 
 export function* getCoursesSaga() {
   try {
-    const requestURL = `http://ec2-18-217-168-29.us-east-2.compute.amazonaws.com/adaimpacto/api/v1/dashboard/course`;
+    const requestURL = `https://api-gateway.ada-impacto.com/dashboard/course`;
     const response = yield call(request, requestURL, {
       method: 'GET',
       headers: {

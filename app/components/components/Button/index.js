@@ -22,6 +22,7 @@ const ContainerButton = styled.button`
   justify-content: center;
   align-items: center;
   text-align: center;
+  cursor: pointer;
 `;
 
 function Button({ text, onClick, width, height, secondary }) {
