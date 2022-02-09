@@ -12,7 +12,7 @@ export function* loginSaga(action) {
     password: action.password,
   };
   try {
-    const requestURL = `http://ec2-18-217-168-29.us-east-2.compute.amazonaws.com/auth/login`;
+    const requestURL = `https://api-gateway.ada-impacto.com/auth/login`;
     const response = yield call(request, requestURL, {
       method: 'POST',
       headers: {
